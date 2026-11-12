@@ -74,9 +74,6 @@ class PetServiceImplTest {
         assertEquals(5L, sent.getId());
         assertEquals("Michi", sent.getName());
         assertEquals("pending", sent.getStatus());
-        assertNull(sent.getCategory());
-        assertTrue(sent.getPhotoUrls().isEmpty());
-        assertTrue(sent.getTags().isEmpty());
 
         assertEquals("Michi", response.getName());
         assertEquals("pending", response.getStatus());

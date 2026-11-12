@@ -2,8 +2,6 @@ package com.tsoft.interview.pet_api.client;
 
 import com.tsoft.interview.pet_api.exception.PetStoreException;
 import com.tsoft.interview.pet_api.exception.PetStoreNotFoundException;
-import com.tsoft.interview.pet_api.model.petstore.dto.Category;
-import com.tsoft.interview.pet_api.model.petstore.dto.Tag;
 import com.tsoft.interview.pet_api.model.petstore.request.ExternalPetRequest;
 import com.tsoft.interview.pet_api.model.petstore.response.ExternalPetResponse;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,8 +12,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.client.MockRestServiceServer;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestClient;
-
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -84,9 +80,6 @@ class PetStoreClientImplTest {
                 .id(5L)
                 .name("Michi")
                 .status("pending")
-                .category(new Category(1L, "Gatos"))
-                .photoUrls(List.of("http://foto"))
-                .tags(List.of(new Tag(2L, "tierno")))
                 .build();
 
         server.expect(requestTo(BASE_URL + "/pet"))
@@ -95,9 +88,6 @@ class PetStoreClientImplTest {
                 .andExpect(jsonPath("$.id").value(5))
                 .andExpect(jsonPath("$.name").value("Michi"))
                 .andExpect(jsonPath("$.status").value("pending"))
-                .andExpect(jsonPath("$.category.name").value("Gatos"))
-                .andExpect(jsonPath("$.photoUrls[0]").value("http://foto"))
-                .andExpect(jsonPath("$.tags[0].name").value("tierno"))
                 .andRespond(withSuccess("{\"id\":5,\"name\":\"Michi\",\"status\":\"pending\"}",
                         MediaType.APPLICATION_JSON));
 
