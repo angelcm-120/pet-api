@@ -25,6 +25,8 @@ public class PetServiceImpl implements PetService {
     public GetPetResponse getPet(Long idPet) {
         ExternalPetResponse externalPet = petStoreClient.getPetById(idPet);
 
+        log.info("Pet obtenida de Petstore: {}", externalPet);
+
         return GetPetResponse.builder()
                 .id(externalPet.getId())
                 .name(externalPet.getName())
@@ -41,6 +43,8 @@ public class PetServiceImpl implements PetService {
                 .build();
 
         ExternalPetResponse externalPet = petStoreClient.createPet(externalRequest);
+
+        log.info("Pet creada en Petstore: {}", externalPet);
 
         return PostPetResponse.builder()
                 .transactionId(UUID.randomUUID().toString())
