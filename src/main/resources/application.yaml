@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: pet-api
+
+server:
+  servlet:
+    contextPath: /
+  port: 8080
+
+clients:
+  petstore:
+    base-url: "https://petstore.swagger.io/v2"
